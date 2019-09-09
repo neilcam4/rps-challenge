@@ -23,12 +23,16 @@ class Rock < Sinatra::Base
   post '/play' do
     @player1 = $player1.name
     $choice = params[:choice]
+    $game = Game.new($choice )
+    @random = $game.random
+    @result = $game.output
     redirect '/result'
   end
 
   get '/result' do
     @player1 = $player1.name
     @choice = $choice
+    @game = $game
       erb :result
   end
 
